@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["blacklists"],{a421:function(t,e,a){"use strict";a.r(e);var l=function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("layout-default",[a("h1",[t._v("Nothing yet...")]),a("p",[t._v("(blacklist page)")])])},n=[],s={},c=s,u=a("2877"),i=Object(u["a"])(c,l,n,!1,null,"99339a06",null);e["default"]=i.exports}}]);
+//# sourceMappingURL=blacklists.4814a634.js.map

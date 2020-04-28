@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["users"],{ed81:function(e,t,n){"use strict";n.r(t);var s=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("layout-default",[n("h1",[e._v("Nothing yet...")]),n("p",[e._v("(users page)")])])},u=[],a={},r=a,l=n("2877"),o=Object(l["a"])(r,s,u,!1,null,"7023bf00",null);t["default"]=o.exports}}]);
+//# sourceMappingURL=users.4de95b00.js.map

@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["call_center"],{b62d:function(e,t,n){"use strict";n.r(t);var a=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("layout-default",[n("h1",[e._v("Nothing yet...")]),n("p",[e._v("(call-center page)")])])},c=[],l={},r=l,u=n("2877"),o=Object(u["a"])(r,a,c,!1,null,"0daac6f3",null);t["default"]=o.exports}}]);
+//# sourceMappingURL=call_center.6f141b2c.js.map
