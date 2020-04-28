@@ -5,7 +5,7 @@ import store from './store'
 
 // global styles
 import "./assets/styles.sass";
-import "./assets/settings.sass";
+import "./assets/sCSSf.sass";
 
 // plugins
 import FontAwesome from "./plugins/FontAwesome.js";

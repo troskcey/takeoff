@@ -2,7 +2,7 @@
 .wrapper(v-if="LOADED")
   h2.top-title Add poll
   form(:action="address" method="POST")
-    .field(
+    .field.mt1.mb1.pdg2(
       v-for="(field, index) in FIELDS"
       :key="index"
     )
@@ -16,7 +16,7 @@
           ) {{ option.name }}
 
       .content
-        .item(
+        .item.pt2(
           v-for="(item, itemIndex) in field.childs"
           :key="itemIndex"
         )
@@ -26,9 +26,9 @@
 
             template(v-if="item.type === 'range'")
               .range-input
-                label from
+                label.pr3 from
                   to-input(v-model.number="item.from" type="number")
-                label to
+                label.pr3 to
                   to-input(v-model.number="item.to" type="number")
 
             template(v-else)
@@ -38,43 +38,43 @@
                   :value="option.value"
                 ) {{ option.name }}
 
-      .bottom
-        div
-        .button.add(v-if="field.condition")
-          button(
-            @click.prevent="addFieldChild({ index, type: field.condition.type })"
-          )
-            fa-icon(icon="plus")
-            span.text Add {{ field.condition.type }}
+      .bottom.pt3
+        to-button.add(
+          v-if="field.condition"
+          @click.prevent="addFieldChild({ index, type: field.condition.type })"
+          :text="`Add ${field.condition.type}`"
+          icon="plus"
+        )
 
-        div(v-else)
-
-        .button.delete
-          button(
-            @click.prevent="deleteCondition(index)"
-          )
-            fa-icon(icon="trash-alt")
-            span.text Delete condition
+        to-button.delete(
+          @click.prevent="deleteCondition(index)"
+          icon="trash-alt"
+          text="Delete condition"
+          color="red"
+        )
 
   h1.error(v-if="ERROR") {{ ERROR }}
-  button.addCondition(@click="addCondition")
-    .button-inner
-      fa-icon.plus(icon="plus")
-      .first-line Click to add a new selection condition
-      .second-line All conditions are interconnected by a logical 'AND'
+
+  .addCondition.mt1.pdg1
+    to-button.button(@click.prevent="addCondition")
+      .button-inner
+        fa-icon.plus(icon="plus")
+        .first-line Click to add a new selection condition
+        .second-line All conditions are interconnected by a logical 'AND'
       
-  .sendRequest
-    button(@click.prevent="sendRequest" type="submit") Send
+  to-button.sendRequest.mt1(@click.prevent="sendRequest" color="green" text="Send")
 </template>
 
 <script>
-import TOInput from "../TOInput.vue";
+import TOInput from "@/components/TOInput.vue";
+import TOButton from "@/components/TOButton.vue";
 
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "respondents",
   components: {
-    [TOInput.name]: TOInput
+    [TOInput.name]: TOInput,
+    [TOButton.name]: TOButton
   },
   data() {
     return {
@@ -88,10 +88,16 @@ export default {
     this.deleteError();
   },
   computed: {
-    ...mapGetters(["POLLS", "TRANSLATE", "LOADED", "FIELDS", "ERROR"])
+    ...mapGetters("polls", [
+      "POLLS", 
+      "TRANSLATE", 
+      "LOADED", 
+      "FIELDS", 
+      "ERROR"
+    ])
   },
   methods: {
-    ...mapActions([
+    ...mapActions("polls", [
       "getPollsInfo", 
       "addFieldChild", 
       "deleteCondition", 
@@ -112,10 +118,9 @@ export default {
   font-size: 3rem
   margin: 0
   font-weight: 400
+
 .field
-  border: 1px solid $Grey 
-  margin: 1rem 0
-  padding: 1.5rem
+  border: 1px solid $Grey
 
   .header
     display: grid
@@ -125,11 +130,8 @@ export default {
       font-size: 2rem
       font-weight: 400
 
-    .select
-
   .content
     .item
-      padding-top: 2rem
       display: grid
       grid-template-columns: 1fr 2fr
 
@@ -151,48 +153,25 @@ export default {
 
         label
           width: 100px
-          padding-right: 2rem
 
   .bottom
-    padding-top: 3rem
     display: grid
     grid-template-columns: repeat(3, 1fr)
 
-    .button
-      width: 100%
-      display: flex
+    .add
+      grid-column: 2 / 3
 
-      &.delete
-        justify-content: flex-end
-      
-      &.delete button, &.add button
-        border: 1px solid
-        background-color: $White
-        border-radius: 1rem
-      &.delete button
-        border-color: $Red
-        color: $Red
-      &.add button
-        border-color: $Green
-        color: $Green
-
-      button
-        padding: 1rem
-        cursor: pointer
-
-        &:focus
-          outline: none
-        
-      .text
-        padding-left: 1rem
+    .delete
+      grid-column: 3 / 4
 
 .addCondition
-  margin-top: 1rem
-  border: 1px solid $Green
-  padding: 1rem
-  cursor: pointer
+  border: 1px solid $Grey
   width: 100%
-  background-color: $White
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+
+  .button
+    grid-column: 2 / 3
 
   .button-inner 
     font-size: 1.5rem
@@ -211,14 +190,6 @@ export default {
   display: flex
   justify-content: flex-end
 
-  button
-    color: $Green
-    background-color: $White
-    padding: 1.5rem
-    font-size: 2rem
-    cursor: pointer
-    border: 2px solid $Green
-    margin-top: 1rem
 .error
   color: $Red
 </style>

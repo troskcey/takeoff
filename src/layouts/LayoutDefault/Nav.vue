@@ -22,7 +22,6 @@ nav
 export default {
   name: "to-nav",
   mounted() {
-    console.log(this.$route.path)
     if (this.$route.path !== "/"){
       this.currentPage = this.$route.path;
     }
@@ -52,11 +51,6 @@ export default {
           to  : "/call-center"
         }
       ]
-    }
-  },
-  watch: {
-    $route(to) {
-      console.log(to)
     }
   },
 }
